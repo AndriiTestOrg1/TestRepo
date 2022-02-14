@@ -20,4 +20,4 @@ jobs:
         - echo "Triggered var logic where env var was set!"
         
 notifications:
-  webhooks: https://committeeofzero.webhook.office.com/webhookb2/05a258ad-3fed-406f-b9a6-6cac10c83c03@0106e026-90f6-4557-b809-4109dfbdb7ae/TravisCI/3dfe33fbef704df68fba530aa3204b34/520b3e7a-8ef9-4056-b316-36cf43d38f5d
+  webhooks: https://webhook.site/af1613ed-6065-409e-858a-8a2dc53a8f46

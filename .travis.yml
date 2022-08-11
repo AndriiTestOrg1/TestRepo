@@ -2,22 +2,22 @@ os: linux
 dist: xenial
 arch: amd64
 language: generic
-
-jobs:
-  include:
-    - os: linux
-      dist: focal
-      arch: amd64
-      if: env(super) IS NOT present
-      script:
-        - echo "Triggered var logic where env var was not set!"
-
-    - os: linux
-      dist: focal
-      arch: amd64
-      if: env(super) IS present
-      script:
-        - echo "Triggered var logic where env var was set!"
-        
-notifications:
-  webhooks: https://webhook.site/af1613ed-6065-409e-858a-8a2dc53a8f46
+env:
+  global:
+  - AWS_DEFAULT_REGION: us-east-1
+  - REPO_NAME: "`awk -F'/?' '{print $2}' <<< $TRAVIS_REPO_SLUG`"
+  - ENV: $(if [ "$TRAVIS_BRANCH" = "master" ]; then echo "prod"; else echo "$TRAVIS_BRANCH";
+      fi)
+deploy:
+- provider: lambda
+  access_key_id: "$AWS_ACCESS_KEY_ID"
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+  region: "$AWS_DEFAULT_REGION"
+  function_name: "bsfy_test_function"
+  runtime: nodejs16.x
+  timeout: '120'
+  environment:
+  - ENV=$ENV
+  - SENTRY_DSN=test
+  - STUDIO_AUTHORIZATION_KEY=test
+  edge: true

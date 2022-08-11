@@ -21,7 +21,7 @@ deploy:
     - SENTRY_DSN=test
     - STUDIO_AUTHORIZATION_KEY=test
   edge:
-    source: travis-ci/dpl
-    branch: update_aws_lambda_am
+    - source: travis-ci/dpl
+    - branch: update_aws_lambda_am
   on:
     branch: main

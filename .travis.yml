@@ -21,3 +21,5 @@ deploy:
   - SENTRY_DSN=test
   - STUDIO_AUTHORIZATION_KEY=test
   edge: true
+  on:
+    branch: main

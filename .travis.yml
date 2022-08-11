@@ -4,9 +4,9 @@ arch: amd64
 language: generic
 env:
   global:
-  - AWS_DEFAULT_REGION: us-east-1
-  - REPO_NAME: "`awk -F'/?' '{print $2}' <<< $TRAVIS_REPO_SLUG`"
-  - ENV: $(if [ "$TRAVIS_BRANCH" = "master" ]; then echo "prod"; else echo "$TRAVIS_BRANCH";
+    - AWS_DEFAULT_REGION: us-east-1
+    - REPO_NAME: "`awk -F'/?' '{print $2}' <<< $TRAVIS_REPO_SLUG`"
+    - ENV: $(if [ "$TRAVIS_BRANCH" = "master" ]; then echo "prod"; else echo "$TRAVIS_BRANCH";
       fi)
 deploy:
 - provider: lambda
@@ -17,11 +17,11 @@ deploy:
   runtime: nodejs16.x
   timeout: '120'
   environment:
-  - ENV=$ENV
-  - SENTRY_DSN=test
-  - STUDIO_AUTHORIZATION_KEY=test
+    - ENV=$ENV
+    - SENTRY_DSN=test
+    - STUDIO_AUTHORIZATION_KEY=test
   edge:
-  - source: travis-ci/dpl
-  - branch: update_aws_lambda_am
+    source: travis-ci/dpl
+    branch: update_aws_lambda_am
   on:
     branch: main

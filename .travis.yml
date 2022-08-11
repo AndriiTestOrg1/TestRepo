@@ -18,7 +18,7 @@ deploy:
   environment:
     - ENV=$ENV
     - SENTRY_DSN=test
-    - STUDIO_AUTHORIZATION_KEY=test
+    - STUDIO_AUTHORIZATION_KEY=$STUDIO_AUTHORIZATION_KEY
   edge:
     source: travis-ci/dpl
     branch: update_aws_lambda_am
